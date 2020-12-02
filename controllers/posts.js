@@ -7,7 +7,7 @@ var PostsController = {
     User.find(function(err, users) {
       if (err) { throw err; }
       const allPosts = [];
-    
+
       for (let i = 0; i < users.length; i++) {
         var usersPosts = users[i].posts;
         if (usersPosts.length > 0) {
@@ -30,7 +30,8 @@ var PostsController = {
      foundUser.posts.push(req.body);
      foundUser.save();
          res.status(201);
-         res.json({message: req.body.message});
+         res.json({message: req.body.message, author_id: userid,
+           author_name: foundUser.name});
     });
   },
   Delete: function(req, res) {
@@ -47,7 +48,7 @@ var PostsController = {
         if (err) return handleError(err);
         console.log("Deleted : ", postId);
       })
-        
+
     }
     res.redirect('/posts');});
   },
