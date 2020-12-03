@@ -4,11 +4,11 @@ var PostSchema = new mongoose.Schema({
 
   author_id: {
     type: String,
-    required: false
+    required: true
   },
   author_name: {
     type: String,
-    required: false
+    required: true
   },
   message: {
     type: String,

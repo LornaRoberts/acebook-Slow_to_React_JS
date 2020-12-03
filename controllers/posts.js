@@ -27,12 +27,15 @@ var PostsController = {
   Create: function(req, res) {
     var userid = req.params._id
     User.findById(userid, function (err, foundUser){
+      console.log(req.body);
      foundUser.posts.push(req.body);
+     foundUser.posts.author_id = req.params._id;
+     foundUser.posts.push({author_id: userid});
      foundUser.save();
          res.status(201);
          res.json({message: req.body.message, author_id: userid,
-           author_name: foundUser.name});
-    });
+            author_name: foundUser.name});
+              });
   },
   Delete: function(req, res) {
     var userid = req.params._id;
